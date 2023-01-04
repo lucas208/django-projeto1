@@ -31,9 +31,10 @@ def category(request, category_id):
         is_published=True
     ).order_by('-id')
 
-    category = Category.objects.filter(id=category_id)
+    category = get_object_or_404(Category, id=category_id)    
 
     return render(request, 'recipes/pages/category.html', context={
         'recipes': recipes,
-        'title': f'{category[0].name} - Category | '
+        'title': f'{category.name} - Category | '
     })
+ 
